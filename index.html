@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NamMod — Game Booster Config</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+  /* Reset & body */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0; height: 100vh;
+    background:
+      radial-gradient(circle at top left, #071014, #0d1e30 70%),
+      linear-gradient(135deg, #0a2239 0%, #164d8f 100%);
+    font-family: 'Roboto Mono', monospace, monospace;
+    color: #8bc34a; /* xanh lá nhạt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+  }
+
+  /* Container */
+  .container {
+    background: linear-gradient(145deg, #0d2546, #1a406f);
+    border-radius: 20px;
+    box-shadow:
+      0 0 10px #164d8f,
+      inset 0 0 20px #0a2239;
+    width: 420px;
+    padding: 30px 40px;
+  }
+
+  /* Login */
+  .login-box {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #8bc34a; /* xanh lá */
+  }
+  .login-box h1 {
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+  }
+  .login-box input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: none;
+    background: #0a2239;
+    color: #8bc34a;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    box-shadow:
+      inset 0 0 5px #164d8f;
+    transition: background 0.3s ease;
+  }
+  .login-box input::placeholder {
+    color: #4c754c;
+  }
+  .login-box input:focus {
+    outline: none;
+    background: #164d8f;
+    box-shadow:
+      0 0 10px #8bc34a,
+      inset 0 0 15px #8bc34a;
+    color: #d0f0a3;
+  }
+  .login-box button {
+    width: 100%;
+    padding: 15px 0;
+    margin-top: 15px;
+    border-radius: 20px;
+    border: none;
+    background: #8bc34a;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #022000;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-shadow:
+      0 0 15px #a7d631;
+    transition: background 0.3s ease;
+  }
+  .login-box button:hover {
+    background: #a7d631;
+    box-shadow:
+      0 0 25px #c0e34e;
+  }
+
+  /* Menu */
+  .menu-box {
+    color: #52a2f8; /* xanh dương */
+  }
+  .menu-box h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #52a2f8;
+    text-shadow: 0 0 10px #366db9;
+  }
+
+  /* Grid nút */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+  }
+
+  /* Nút chính */
+  .btn {
+    background:
+      linear-gradient(145deg, #18356b, #2a4f9c);
+    border-radius: 15px;
+    padding: 18px 0;
+    cursor: pointer;
+    color: #c3dfff;
+    font-weight: 600;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+    box-shadow:
+      0 0 15px #1f50b5,
+      inset 0 0 8px #365d9b;
+  }
+  .btn:hover {
+    background:
+      linear-gradient(145deg, #2a4f9c, #18356b);
+    box-shadow:
+      0 0 30px #5fa4ff,
+      inset 0 0 12px #4a72c9;
+  }
+  .btn.active {
+    background:
+      linear-gradient(145deg, #74b1ff, #3576db);
+    box-shadow:
+      0 0 40px #94c3ff,
+      inset 0 0 15px #5285e2;
+    color: #001f5b;
+  }
+
+  /* Icon */
+  .icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  small {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Big open button */
+  .big-open {
+    background:
+      linear-gradient(135deg, #2962ff, #448aff);
+    padding: 18px 0;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #e0f0ff;
+    cursor: pointer;
+    box-shadow:
+      0 0 25px #2979ff,
+      inset 0 0 15px #2c6fff;
+    user-select: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .big-open:hover {
+    background:
+      linear-gradient(135deg, #448aff, #2962ff);
+    box-shadow:
+      0 0 40px #5f9eff,
+      inset 0 0 18px #3c7fff;
+  }
+
+  /* Nút đăng xuất */
+  .logout-btn {
+    background: #f44336;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 15px 0;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px #d32f2f;
+    user-select: none;
+    border: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .logout-btn:hover {
+    background: #d32f2f;
+    box-shadow: 0 0 25px #f44336;
+  }
+
+  /* Hiệu ứng mạch điện */
+  .btn::before,
+  .btn::after {
+    content: '';
+    position: absolute;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 0 6px #3f7fff,
+      0 0 10px #88b7ff;
+    transition: all 0.3s ease;
+  }
+  .btn::before {
+    width: 80%;
+    height: 2px;
+    top: 10px;
+    left: 10%;
+  }
+  .btn::after {
+    width: 2px;
+    height: 80%;
+    right: 10px;
+    top: 10%;
+  }
+  .btn:hover::before,
+  .btn:hover::after {
+    background: #74b1ff;
+    box-shadow:
+      0 0 12px #74b1ff,
+      0 0 18px #a8c9ff;
+  }
+
+  /* Responsive */
+  @media(max-width: 480px) {
+    .container {
+      width: 95%;
+      padding: 20px;
+    }
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="login-box" id="loginBox">
+    <h1>ĐĂNG NHẬP</h1>
+    <input type="text" id="username" placeholder="Tài khoản" autocomplete="off" />
+    <input type="password" id="password" placeholder="Mật khẩu" autocomplete="off" />
+    <button onclick="login()">Đăng nhập</button>
+  </div>
+
+  <div class="menu-box" id="menuBox" style="display:none;">
+    <h1>NamMod — Game Booster</h1>
+    <div class="grid">
+      <div class="btn" id="btn-touch" onclick="toggleBtn('btn-touch')">
+        <div class="icon">⚡</div>
+        <small>Tối ưu cảm ứng</small>
+      </div>
+      <div class="btn" id="btn-ram" onclick="toggleBtn('btn-ram')">
+        <div class="icon">🧹</div>
+        <small>Giải phóng RAM</small>
+      </div>
+      <div class="btn" id="btn-lag" onclick="toggleBtn('btn-lag')">
+        <div class="icon">🎛️</div>
+        <small>Giảm lag</small>
+      </div>
+      <div class="btn" id="btn-crosshair" onclick="toggleBtn('btn-crosshair')">
+        <div class="icon">🎯</div>
+        <small>Tâm ảo</small>
+      </div>
+      <div class="btn" id="btn-clear-cache" onclick="toggleBtn('btn-clear-cache')">
+        <div class="icon">🗑️</div>
+        <small>Xoá cache</small>
+      </div>
+      <div class="btn" id="btn-access" onclick="toggleBtn('btn-access')">
+        <div class="icon">🔧</div>
+        <small>Quyền trợ năng</small>
+      </div>
+    </div>
+
+    <div class="big-open" onclick="openGame()">Mở Free Fire</div>
+
+    <button class="logout-btn" onclick="logout()">Đăng xuất</button>
+  </div>
+
+</div>
+
+<!-- Tâm ảo -->
+<div id="crosshair" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  pointer-events: none;
+  display: none;
+  z-index: 9999;
+">
+  <div style="position:absolute; top:14px; left:0; width:30px; height:2px; background:#74b1ff;"></div>
+  <div style="position:absolute; left:14px; top:0; width:2px; height:30px; background:#74b1ff;"></div>
+</div>
+
+<script>
+  window.onload = function() {
+    if(localStorage.getItem('loggedIn') === 'true') {
+      showMenu();
+    }
+    restoreBtnStates();
+  };
+
+  function login() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    if(user === 'NamMod123' && pass === 'NamBaSan') {
+      localStorage.setItem('loggedIn', 'true');
+      alert('Đăng nhập thành công!');
+      showMenu();
+    } else {
+      alert('Sai tài khoản hoặc mật khẩu!');
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('loggedIn');
+    alert('Đã đăng xuất!');
+    document.getElementById('menuBox').style.display = 'none';
+    document.getElementById('loginBox').style.display = 'block';
+  }
+
+  function showMenu() {
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('menuBox').style.display = 'block';
+  }
+
+  function toggleBtn(id) {
+    const btn = document.getElementById(id);
+    btn.classList.toggle('active');
+    const active = btn.classList.contains('active');
+    localStorage.setItem(id, active ? 'true' : 'false');
+
+    if(id === 'btn-crosshair') {
+      document.getElementById('crosshair').style.display = active ? 'block' : 'none';
+    }
+  }
+
+  function restoreBtnStates() {
+    const btns = ['btn-touch', 'btn-ram', 'btn-lag', 'btn-crosshair', 'btn-clear-cache', 'btn-access'];
+    btns.forEach(id => {
+      const state = localStorage.getItem(id);
+      const btn = document.getElementById(id);
+      if(state === 'true') {
+        btn.classList.add('active');
+        if(id === 'btn-crosshair') {
+          document.getElementById('crosshair').style.display = 'block';
+        }
+      } else {
+        btn.classList.remove('active');
+        if(id === 'btn-crosshair') {
+          document.getElementById('crosshair').style.display = 'none';
+        }
+      }
+    });
+  }
+
+  function openGame() {
+    alert('Đang mở Free Fire...');
+    // Thêm code mở game thật trên Android nếu cần
+  }
+</script>
+
+</body>
+</html>
